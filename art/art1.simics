@@ -28,7 +28,7 @@ write-configuration /home/zoo/simics-workspace/checkpoints/art-break1.check
 #Load cache hierarcy parameters
 
 echo "Loading caches"
-run-command-file /home/zoo/simics-workspace/art/cache-hierarchy.simics
+run-command-file /home/zoo/simics-workspace/cache-hierarchy.simics
 
 #Continue simulation for 100,000,000 instructions to warm-up caches
 echo "Warming up caches"
