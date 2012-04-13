@@ -1,0 +1,44 @@
+#Invoke as follows: simics -stall -x runbenchmark.simics
+#Load checkpoint
+read-configuration /home/zoo/simics-workspace/checkpoints/boot.check 
+
+enable-magic-breakpoint
+instruction-fetch-mode instruction-fetch-trace
+istc-disable
+dstc-disable
+
+
+con0.input "./gzip input.combined 32 \n"
+
+c
+
+#First breakpoint encountered
+#NOTE: you may take checkpoint here for each different application, in order
+#to omit the execution of its initialization phase in subsequent simulations (see #Pargzipima C). E.g.:
+
+write-configuration /home/zoo/simics-workspace/checkpoints/gzip-break1.check
+
+#Load cache hierarcy parameters
+
+echo "Loading caches"
+run-command-file /home/zoo/simics-workspace/cache-hierarchy.simics
+
+#Continue simulation for 100,000,000 instructions to warm-up caches
+echo "Warming up caches"
+c 100_000_000
+
+#Reset statistics
+dc.reset-statistics
+ic.reset-statistics
+l2c.reset-statistics
+ptime
+#Continue simulation for 1,000,000,000 instructions
+echo "Simulating..."
+c 1000_000_000
+#Collect statistics
+
+dc.statistics
+ic.statistics
+l2c.statistics
+ptime
+exit

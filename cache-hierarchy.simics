@@ -1,0 +1,70 @@
+#
+# Transaction staller for memory
+@staller = pre_conf_object('staller', 'trans-staller')
+@staller.stall_time = 0
+#
+# l2 cache: 1Mb
+@l2c = pre_conf_object('l2c', 'g-cache')
+@l2c.cpus = conf.cpu0
+@l2c.config_line_number = 8192
+@l2c.config_line_size = 128
+@l2c.config_assoc = 8
+@l2c.config_virtual_index = 0
+@l2c.config_virtual_tag = 0
+@l2c.config_write_back = 0
+@l2c.config_write_allocate = 0
+@l2c.config_replacement_policy = 'lru'
+@l2c.penalty_read = 0
+@l2c.penalty_write = 0
+@l2c.penalty_read_next = 0
+@l2c.penalty_write_next = 0
+@l2c.timing_model = staller
+#
+# instruction cache: 32Kb
+@ic = pre_conf_object('ic', 'g-cache')
+@ic.cpus = conf.cpu0
+@ic.config_line_number = simev.LINESNO
+@ic.config_line_size = simev.LINESZ
+@ic.config_assoc = simev.ASSOC
+@ic.config_virtual_index = 0
+@ic.config_virtual_tag = 0
+@ic.config_replacement_policy = 'lru'
+@ic.penalty_read = 0
+@ic.penalty_write = 0
+@ic.penalty_read_next = 0
+@ic.penalty_write_next = 0
+@ic.timing_model = l2c
+#
+# data cache: 32Kb
+@dc = pre_conf_object('dc', 'g-cache')
+@dc.cpus = conf.cpu0
+@dc.config_line_number = simev.LINESNO
+@dc.config_line_size = simev.LINESZ
+@dc.config_assoc = simev.ASSOC
+@dc.config_virtual_index = 0
+@dc.config_virtual_tag = 0
+@dc.config_replacement_policy = 'lru'
+@dc.penalty_read = 0
+@dc.penalty_write = 0
+@dc.penalty_read_next = 0
+@dc.penalty_write_next = 0
+@dc.timing_model = l2c
+#
+# transaction splitter for instruction cache
+@ts_i = pre_conf_object('ts_i', 'trans-splitter')
+@ts_i.cache = ic
+@ts_i.timing_model = ic
+@ts_i.next_cache_line_size = simev.LINESZ
+#
+# transaction splitter for data cache
+@ts_d = pre_conf_object('ts_d', 'trans-splitter')
+@ts_d.cache = dc
+@ts_d.timing_model = dc
+@ts_d.next_cache_line_size = simev.LINESZ
+#
+# instruction-data splitter
+@id = pre_conf_object('id', 'id-splitter')
+@id.ibranch = ts_i
+@id.dbranch = ts_d
+@SIM_add_configuration([staller, l2c, ic, dc, ts_i, ts_d, id], None)
+@conf.phys_mem0.timing_model = conf.id
