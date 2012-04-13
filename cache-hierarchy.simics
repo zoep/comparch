@@ -23,9 +23,9 @@
 # instruction cache: 32Kb
 @ic = pre_conf_object('ic', 'g-cache')
 @ic.cpus = conf.cpu0
-@ic.config_line_number = simev.LINESNO
-@ic.config_line_size = simev.LINESZ
-@ic.config_assoc = simev.ASSOC
+@ic.config_line_number = simenv.LINESNO
+@ic.config_line_size = simenv.LINESZ
+@ic.config_assoc = simenv.ASSOC
 @ic.config_virtual_index = 0
 @ic.config_virtual_tag = 0
 @ic.config_replacement_policy = 'lru'
@@ -38,9 +38,9 @@
 # data cache: 32Kb
 @dc = pre_conf_object('dc', 'g-cache')
 @dc.cpus = conf.cpu0
-@dc.config_line_number = simev.LINESNO
-@dc.config_line_size = simev.LINESZ
-@dc.config_assoc = simev.ASSOC
+@dc.config_line_number = simenv.LINESNO
+@dc.config_line_size = simenv.LINESZ
+@dc.config_assoc = simenv.ASSOC
 @dc.config_virtual_index = 0
 @dc.config_virtual_tag = 0
 @dc.config_replacement_policy = 'lru'
@@ -54,13 +54,13 @@
 @ts_i = pre_conf_object('ts_i', 'trans-splitter')
 @ts_i.cache = ic
 @ts_i.timing_model = ic
-@ts_i.next_cache_line_size = simev.LINESZ
+@ts_i.next_cache_line_size = simenv.LINESZ
 #
 # transaction splitter for data cache
 @ts_d = pre_conf_object('ts_d', 'trans-splitter')
 @ts_d.cache = dc
 @ts_d.timing_model = dc
-@ts_d.next_cache_line_size = simev.LINESZ
+@ts_d.next_cache_line_size = simenv.LINESZ
 #
 # instruction-data splitter
 @id = pre_conf_object('id', 'id-splitter')
