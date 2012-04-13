@@ -1,0 +1,34 @@
+#Invoke as follows:  simics -stall -x runbenchmark.simics
+#Load checkpoint taken after the first breakpoint of the application
+
+read-configuration /home/zoo/simics-workspace/checkpoints/art-break1.bench
+
+#We disable breakpoints 
+disable-magic-breakpoint 
+instruction-fetch-mode instruction-fetch-trace 
+istc-disable
+dstc-disable
+
+echo "Loading caches"
+run-command-file /home/zoo/simics-workspace/art/cache-hierarchy.simics
+
+#Continue simulation for 100,000,000 instructions to warm-up caches
+
+echo "Warming up caches"
+c 100_000_000
+#Reset statistics
+dc.reset-statistics
+ic.reset-statistics
+l2c.reset-statistics
+ptime
+
+#Continue simulation for 1,000,000,000 instructions
+echo "Simulating..."
+c 1000_000_000
+
+#Collect statistics
+dc.statistics
+ic.statistics
+l2c.statistics
+ptime
+exit
