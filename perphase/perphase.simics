@@ -1,0 +1,53 @@
+#Invoke as follows:  simics -stall -x runbenchmark.simics
+#Load checkpoint taken after the first breakpoint of the application
+
+$checkpoint = ("/home/zoo/simics-workspace/checkpoints/" + simenv.BENCH + "break1.check" )
+
+read-configuration $checkpoint
+
+#We disable breakpoints 
+disable-magic-breakpoint 
+instruction-fetch-mode instruction-fetch-trace 
+istc-disable
+dstc-disable
+
+echo "Loading caches"
+run-command-file /home/zoo/simics-workspace/cache-hierarchySTD.simics
+
+#Continue simulation for 100,000,000 instructions to warm-up caches
+
+echo "Warming up caches"
+c 100_000_000
+
+#Reset statistics
+dc.reset-statistics
+ic.reset-statistics
+l2c.reset-statistics
+ptime
+
+$phase = 0
+while $phase < 50 {
+
+	#write results for current phase at different file
+	$outputfile = ( simenv.BENCH + "results/" + simenv.BENCH + "-phase"+ $phase)
+	output-file-start $outputfile
+	#We need to reset statistics at the beginning of each new phase
+	#(without of course resetting the cache contents)
+	dc.reset-statistics
+	ic.reset-statistics
+	l2c.reset-statistics
+	ptime
+	#Continue simulation for 100,000,000 instructions
+	echo "Simulating for phase " + $phase
+	c 100_000_000
+	#Collect statistics
+	dc.statistics
+	ic.statistics
+	l2c.statistics
+	ptime
+	output-file-stop $outputfile
+	$phase += 1
+	
+} 
+
+exit
