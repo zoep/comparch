@@ -1,6 +1,6 @@
 #!/bin/bash
 
-/home/zoo/simics-workspace/simics -stall -e '$LINESNO'=256 -e '$LINESZ'=64 -e '$ASSOC'=2 -x art1.simics exit &> l1results/gzip-16384-64-2.txt
+/home/zoo/simics-workspace/simics -stall -e '$LINESNO'=256 -e '$LINESZ'=64 -e '$ASSOC'=2 -x gzip1.simics exit &> l1results/gzip-16384-64-2.txt
 
 for linesize in 32 64 128
 do
