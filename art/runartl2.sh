@@ -4,7 +4,7 @@ for cashesize in 262144 524288
 do
 	linesno=$(($cashesize/128))
 		
-	/home/zoo/simics-workspace/simics -stall -e '$LINESNO'=$linesno -e '$LINESZ'=$linesize -e '$ASSOC'=4 -x art.simics exit &> l2results/art-${cashesize}-128-4.txt
+	/home/zoo/simics-workspace/simics -stall -e '$LINESNO'=$linesno -e '$LINESZ'=128 -e '$ASSOC'=4 -x art.simics exit &> l2results/art-${cashesize}-128-4.txt
 
 done
 
@@ -25,7 +25,7 @@ for cashesize in 1048567 2097152
 do
 	linesno=$(($cashesize/128))
 		
-	/home/zoo/simics-workspace/simics -stall -e '$LINESNO'=$linesno -e '$LINESZ'=$linesize -e '$ASSOC'=16 -x art.simics exit &> l2results/art-${cashesize}-128-8.txt
+	/home/zoo/simics-workspace/simics -stall -e '$LINESNO'=$linesno -e '$LINESZ'=128 -e '$ASSOC'=16 -x art.simics exit &> l2results/art-${cashesize}-128-16.txt
 
 done
 
