@@ -1,7 +1,7 @@
 #Invoke as follows:  simics -stall -x runbenchmark.simics
 #Load checkpoint taken after the first breakpoint of the application
 
-$checkpoint = ("/home/zoo/simics-workspace/checkpoints/" + simenv.BENCH + "-break1.check" )
+$checkpoint = ("/home/zoo/simics-workspace/checkpoints/" + $BENCH + "-break1.check" )
 
 read-configuration $checkpoint
 
@@ -29,7 +29,7 @@ $phase = 0
 while $phase < 50 {
 
 	#write results for current phase at different file
-	$outputfile = ( simenv.BENCH + "results/" + simenv.BENCH + "-phase"+ $phase)
+	$outputfile = ( $BENCH + "results/" + $BENCH + "-phase"+ $phase)
 	output-file-start $outputfile
 	#We need to reset statistics at the beginning of each new phase
 	#(without of course resetting the cache contents)
