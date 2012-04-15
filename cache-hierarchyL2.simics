@@ -69,4 +69,3 @@
 @id.dbranch = ts_d
 @SIM_add_configuration([staller, l2c, ic, dc, ts_i, ts_d, id], None)
 @conf.phys_mem0.timing_model = conf.id
-￼
