@@ -4,7 +4,7 @@ for cashesize in 262144 524288
 do
 	linesno=$(($cashesize/128))
 		
-	/home/zoo/simics-workspace/simics -stall -e '$LINESNO'=$linesno -e '$LINESZ'=128 -e '$ASSOC'=4 -x equake.simics  &> l2results/equake-${cashesize}-128-4.txt
+	~/simics-workspace/simics -stall -e '$LINESNO'=$linesno -e '$LINESZ'=128 -e '$ASSOC'=4 -x equake.simics  &> l2results/equake-${cashesize}-128-4.txt
 
 done
 
@@ -15,7 +15,7 @@ do
 	do
 		linesno=$(($cashesize/$linesize))
 		
-		/home/zoo/simics-workspace/simics -stall -e '$LINESNO'=$linesno -e '$LINESZ'=$linesize -e '$ASSOC'=8 -x equake.simics  &> l2results/equake-${cashesize}-${linesize}-8.txt
+		~/simics-workspace/simics -stall -e '$LINESNO'=$linesno -e '$LINESZ'=$linesize -e '$ASSOC'=8 -x equake.simics  &> l2results/equake-${cashesize}-${linesize}-8.txt
 
 	done
 done
@@ -25,7 +25,7 @@ for cashesize in 1048567 2097152
 do
 	linesno=$(($cashesize/128))
 		
-	/home/zoo/simics-workspace/simics -stall -e '$LINESNO'=$linesno -e '$LINESZ'=128 -e '$ASSOC'=16 -x equake.simics  &> l2results/equake-${cashesize}-128-16.txt
+	~/simics-workspace/simics -stall -e '$LINESNO'=$linesno -e '$LINESZ'=128 -e '$ASSOC'=16 -x equake.simics  &> l2results/equake-${cashesize}-128-16.txt
 
 done
 
