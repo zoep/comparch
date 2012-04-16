@@ -9,7 +9,7 @@ do
 done
 
 
-for cashesize in 524288 1048567 2097152
+for cashesize in 524288 1048576 2097152
 do
 	for linesize in 64 128 256
 	do
@@ -21,7 +21,7 @@ do
 done
 
 
-for cashesize in 1048567 2097152
+for cashesize in 1048576 2097152
 do
 	linesno=$(($cashesize/128))
 		
