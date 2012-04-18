@@ -1,0 +1,92 @@
+Simics 4.0 (build 2598 amd64-linux) Copyright 1998-2010 Virtutech AB
+
+Use of this software is subject to appropriate license.
+Type 'copyright' for details on copyright and 'help' for on-line documentation.
+
+Magic breakpoint already disabled.
+Turning I-STC off and flushing old data
+Turning D-STC off and flushing old data
+Loading caches
+Warming up caches
+[cpu0] cs:0x08049712 p:0x0ce4d712  fld qword ptr [ecx]
+processor         steps        cycles   time [s]
+cpu0       221259125575  221259125575  11062.956
+Simulating...
+[cpu0] cs:0x0804a6a1 p:0x0cdd06a1  mov ebp,esp
+
+Cache statistics: dc
+-----------------
+    Total number of transactions:     635095127
+
+         Device data reads (DMA):             0
+        Device data writes (DMA):             0
+
+          Uncacheable data reads:           332
+         Uncacheable data writes:           986
+ Uncacheable instruction fetches:             0
+
+          Data read transactions:     496747171
+                Data read misses:      14747291
+             Data read hit ratio:         97.03%
+
+  Instruction fetch transactions:             0
+        Instruction fetch misses:             0
+
+         Data write transactions:     138346638
+               Data write misses:       4140530
+            Data write hit ratio:         97.01%
+
+          Copy back transactions:             0
+
+
+Cache statistics: ic
+-----------------
+    Total number of transactions:     999975746
+
+         Device data reads (DMA):             0
+        Device data writes (DMA):             0
+
+          Uncacheable data reads:             0
+         Uncacheable data writes:             0
+ Uncacheable instruction fetches:             0
+
+          Data read transactions:             0
+                Data read misses:             0
+
+  Instruction fetch transactions:     999975746
+        Instruction fetch misses:          2352
+     Instruction fetch hit ratio:        100.00%
+
+         Data write transactions:             0
+               Data write misses:             0
+
+          Copy back transactions:             0
+
+
+Cache statistics: l2c
+-----------------
+    Total number of transactions:     153097599
+
+         Device data reads (DMA):             0
+        Device data writes (DMA):             0
+
+          Uncacheable data reads:           332
+         Uncacheable data writes:           986
+ Uncacheable instruction fetches:             0
+
+          Data read transactions:      14747291
+                Data read misses:       6394599
+             Data read hit ratio:         56.64%
+
+  Instruction fetch transactions:          2352
+        Instruction fetch misses:          1649
+     Instruction fetch hit ratio:         29.89%
+
+         Data write transactions:     138346638
+               Data write misses:       1760949
+            Data write hit ratio:         98.73%
+
+          Copy back transactions:             0
+
+processor         steps        cycles   time [s]
+cpu0       222259125575  222259125575  11112.956

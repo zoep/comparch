@@ -1,3 +1,4 @@
+
 #!/bin/bash
 
 ~/simics-workspace/simics -stall -e '$LINESNO'=256 -e '$LINESZ'=64 -e '$ASSOC'=2 -x art1.simics  &> l1results/art-16384-64-2.txt
